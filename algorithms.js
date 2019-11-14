@@ -220,3 +220,36 @@ var number = function(busStops){
     });
     return people;
   }
+
+  /* Write a function that takes in a number value, and searches from 0 to 100 trillion to find that number.  You may use any approach you like, but the function 
+  must execute and return the number of tries needed to find the number correctly.  Total performance time must be less than two seconds.  For an extra challenge,
+  configure the function to take in any two numbers (such as 0 and 100 trillion) and maintain the same performance metric for any provided integer inputs. You are permitted to
+  have variables outside the function scope if needed, but the function itself can only be called from global scope once. Make sure to account for edge cases in which the provided
+  inputs are not integers.
+  */
+
+ let count = 0;
+
+ function binarySearch(low, high, number) {
+   if (number > Math.pow(2,32) || number < Math.pow(-2, -32)) {
+     return ("number is not a 32 bit integer")
+   }
+ 
+   const midpoint = Math.floor((low + high )/ 2)
+   
+   console.log(midpoint, ' --midpoint')
+   if (midpoint === number) {
+     return ("Located after "  + count + " tries")
+   }
+ 
+   else {
+     count++
+     if (midpoint > number) {
+       binarySearch(low, midpoint, number);
+     } else if (midpoint < number) {
+       binarySearch(midpoint, high, number);
+     }
+   }
+ }
+ 
+ //Test case: binarySearch(-1000000000000000, 1000000000000000, 30460012)
